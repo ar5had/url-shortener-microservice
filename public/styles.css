@@ -1,7 +1,7 @@
 body {
     max-width: 900px;
     padding: 15px;
-    font-family: 'Libre Baskerville', sans-serif;
+    font-family: 'Bungee Hairline', sans-serif;
     margin: auto;
     letter-spacing: 1px;
     color: #333;
@@ -9,7 +9,7 @@ body {
 }
 
 p, li {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Cormorant Garamond', sans-serif;
     margin-bottom: 10px;
     color: #666;
     line-height: 1.5;
@@ -21,8 +21,8 @@ ul {
 }
 
 p {
-    color: #625e98;
-    background: rgba(84, 82, 119, 0.22);
+    color: #b33c66;
+    background: rgba(160, 56, 121, 0.09);
     padding: 5px;
     margin-top: 0;
     border-radius: 5px;
@@ -32,6 +32,6 @@ p {
 
 h1 {
     font-size: 30px;
-    border-bottom: solid 2px #ccc;
+    border-bottom: solid 1px #ccc;
     padding: 10px 0;
 }

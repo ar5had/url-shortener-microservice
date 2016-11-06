@@ -1,2 +1,2 @@
-# url-shortner
-An app to shorten url.
+# url-shortner-microservice
+A microservice to shorten url.
