@@ -1,2 +1,2 @@
-# url-shortner-microservice
+# url-shortener-microservice
 A microservice to shorten url.
