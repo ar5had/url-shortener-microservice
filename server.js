@@ -19,8 +19,8 @@ mongo.connect(url, function(err, db) {
         req.db = db;
         next();
     });        
-
-    app.use(routes);
+    
+    app.use("/", routes);
 });
 
 app.listen(port, function() {

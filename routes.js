@@ -46,11 +46,32 @@ function validateUrl(url) {
 }
 
 router.get("/", function(req, res) {
+    console.log("/ middleware called");
    res.sendFile(require("path").join(__dirname, "public", "index.html")); 
 });
 
-router.get("/shorten/:url", function(req, res, next) {
-    if (validateUrl(req.params.url)) {
+// this is calling many times
+router.get("/:id", function(req, res) {
+    console.log("/:id middleware called");
+    var id = req.params.id;
+    // searching short-url-id
+    req.db.collection("urls")
+        .find({_id: id})
+        .toArray(function(err, docs) {
+            if(err) console.error("Error occurred while searching urls:", err);
+            if(docs.length > 0)
+                res.redirect(docs[0]["original-url"]);
+            else {
+                var elem = "<p>Oops, wrong url requested!</p>";
+                res.send(styles + elem);
+            }
+        });
+});
+
+router.get("/shorten/(http:\/\/|https:\/\/)[a-z0-9\-]+[.]\w+/", function(req, res, next) {
+    console.log("/shorten middleware called");
+    console.log(req.params);
+    if (validateUrl(req.params[0])) {
         req.db.collection("counter")
         .find({_id: "counter"})
         .toArray(function (err, docs) {
@@ -66,22 +87,5 @@ router.get("/shorten/:url", function(req, res, next) {
         res.send(styles + elem);
     }
 }, [incrementCounter, insertUrlDocument, sendResponse]);
-
-router.get("/:id", function(req, res) {
-    var id = req.params.id;
-    // searching short-url-id
-    req.db.collection("urls")
-        .find({_id: id})
-        .toArray(function(err, docs) {
-            if(err) console.error("Error occurred while searching urls:", err);
-            console.log("Called from /:id route:", docs);
-            if(docs.length > 0)
-                res.redirect(docs[0]["original-url"]);
-            else {
-                var elem = "<p>Oops, wrong url requested!</p>";
-                res.send(styles + elem);
-            }
-        });
-});
 
 module.exports = router;
