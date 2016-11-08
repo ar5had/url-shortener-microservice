@@ -8,9 +8,8 @@ var styles = "<style>@import url('https://fonts.googleapis.com/css?family=Cormor
             "margin-top: 40vh;font-weight: 500;word-spacing: 2px;}</style>";
             
 function verifyUrl(req, res, next) {
-    console.log("/shorten middleware called with", req.params);
+    console.log("verifyurl called");
     req.params.url +=  req.params[0];
-    console.log(req.params.url);
     if (validateUrl(req.params.url)) {
         req.db.collection("counter")
         .find({_id: "counter"})
@@ -30,6 +29,7 @@ function verifyUrl(req, res, next) {
 
 
 function incrementCounter(req, res, next) {
+    console.log("inc called");
     // increasing counter
     req.db.collection("counter")
         .update(
@@ -47,8 +47,9 @@ function incrementCounter(req, res, next) {
 }
 
 function insertUrlDocument(req, res, next) {
+    console.log("insert caled");
     //inserting new url document
-    var obj = {original_url: req.params.url, _id: req.encodedId, entry_time: new Date().toUTCString()};
+    var obj = {original_url: req.params.url, _id: (req.encodedId || "3z"), entry_time: new Date().toUTCString()};
     req.db.collection("urls")
         .insert(obj, function(err, data) {
             if(err) console.error("Error happened while adding new document:", err);

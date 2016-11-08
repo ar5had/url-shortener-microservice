@@ -10,12 +10,12 @@ var app = express();
 app.use(favicon(path.join(__dirname, 'public','favicon.png')));
 app.use(express.static(path.join(__dirname, "public")));
 
-var url = 'mongodb://localhost:27017/url-shortener';
+var url = process.env.MONGO_LAB_URI;
 
 mongo.connect(url, function(err, db) {
     if (err) console.error("Error occurred while connecting to db:", err);
     
-    console.log("successfully connected to db.");
+    console.log("successfully connected to db");
     
     app.use(function(req, res, next) {
         req.db = db;
