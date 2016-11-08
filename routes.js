@@ -8,7 +8,7 @@ var styles = "<style>@import url('https://fonts.googleapis.com/css?family=Cormor
             "margin-top: 40vh;font-weight: 500;word-spacing: 2px;}</style>";
             
 function verifyUrl(req, res, next) {
-    console.log("/shorten middleware called");
+    console.log("/shorten middleware called with", req.params);
     req.params.url +=  req.params[0];
     console.log(req.params.url);
     if (validateUrl(req.params.url)) {
@@ -76,7 +76,7 @@ router.get("/:code", function(req, res) {
             if(err) console.error("Error occurred while searching urls:", err);
             console.log(docs);
             if(docs.length > 0)
-                res.redirect(docs[0]["original-url"]);
+                console.log(docs[0]["original_url"]),res.redirect(docs[0]["original_url"]);
             else {
                 var elem = "<p>Oops, wrong url requested!</p>";
                 res.send(styles + elem);

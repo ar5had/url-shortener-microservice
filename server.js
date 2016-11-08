@@ -22,7 +22,7 @@ mongo.connect(url, function(err, db) {
         next();
     });        
     
-    app.use("/", routes);
+    app.use(routes);
 });
 
 app.listen(port, function() {
