@@ -78,7 +78,7 @@ router.get("/:code", function(req, res) {
             if(docs.length > 0)
                 console.log(docs[0]["original_url"]),res.redirect(docs[0]["original_url"]);
             else {
-                var elem = "<p>Oops, wrong url requested!</p>";
+                var elem = "<p>"+JSON.stringify({error:'Oops, wrong url requested!'})+"</p>";
                 res.send(styles + elem);
             }
         });
