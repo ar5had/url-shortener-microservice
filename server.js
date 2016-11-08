@@ -2,10 +2,12 @@ var express = require("express")
     , mongo = require("mongodb").MongoClient
     , port = process.env.PORT || 8080
     , path = require("path")
-    , routes = require("./routes"); 
+    , routes = require("./routes")
+    , favicon = require("serve-favicon"); 
 
 var app = express();
 
+app.use(favicon(path.join(__dirname, 'public','favicon.png')));
 app.use(express.static(path.join(__dirname, "public")));
 
 var url = 'mongodb://localhost:27017/url-shortener';
