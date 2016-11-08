@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var crypto = require("./crypto");
 
+
 var styles = "<style>@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');" +
             "body{background: #fefefe; word-wrap: break-word;}" +
             "p {font-size: 30px;color: #b33c66;font-family: 'Cormorant Garamond', monospace;text-align: center;" +

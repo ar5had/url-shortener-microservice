@@ -3,14 +3,17 @@ var express = require("express")
     , port = process.env.PORT || 8080
     , path = require("path")
     , routes = require("./routes")
-    , favicon = require("serve-favicon"); 
+    , favicon = require("serve-favicon");
+    
+var dotenv = require('dotenv');
+dotenv.load();
 
 var app = express();
 
 app.use(favicon(path.join(__dirname, 'public','favicon.png')));
 app.use(express.static(path.join(__dirname, "public")));
 
-var url = process.env.MONGOLAB_URI;
+var url = process.env.MONGOLAB_URI.toString();
 
 mongo.connect(url, function(err, db) {
     if (err) console.error("Error occurred while connecting to db:", err);
